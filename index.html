@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>BipSi</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="css/app.css" rel="stylesheet" />
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="images/icons/favicon.png" />
+    <link href="manifest.webmanifest" rel="manifest" />
+    <link rel="apple-touch-icon" sizes="512x512" href="/images/icons/icon-512.png" />
+    <link rel="apple-touch-icon" sizes="192x192" href="/images/icons/icon-192.png" />
+    <!-- If you add any scoped CSS files, uncomment the following to load them
+    <link href="BipSi.styles.css" rel="stylesheet" /> -->
+</head>
+
+<body style="background-color: rgb(177, 214, 175);">
+
+    <!-- Modal Aggiornamento App -->
+    <div class="modal" tabindex="-1" id="reloadConfirmationModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Aggiornamento Applicazione</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Una nuova versione dell'applicazione è stata intallata. Vuoi ricaricare adesso?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                    <button type="button" class="btn btn-primary" id="reloadPageButton">Si</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="app">
+        <div class="d-flex justify-content-center align-items-center"
+            style="width: 100vw; height: 100vh; background-color: rgb(177, 214, 175);">
+            <img src="images/icons/icon-512.png"
+                style="width: 100%; height: 100%; max-width: 512px; max-height: 512px; object-fit: contain;" />
+        </div>
+    </div>
+
+    <div id="blazor-error-ui">
+        An unhandled error has occurred.
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+    <script src="_framework/blazor.webassembly.js"></script>
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="js/js_functions.js"></script>
+    <!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
+    <script>
+        // Registra il service worker
+        navigator.serviceWorker.register('/service-worker.js').then(reg => {
+            // Ascolta l'evento 'updatefound'
+            reg.addEventListener('updatefound', () => {
+                const newWorker = reg.installing;
+
+                newWorker.addEventListener('statechange', () => {
+                    // Quando il service worker ha scaricato i nuovi file
+                    if (newWorker.state === 'installed') {
+                        // Se c'è già un service worker in esecuzione
+                        if (navigator.serviceWorker.controller) {
+                            // Ascolta l'evento 'controllerchange'
+                            navigator.serviceWorker.addEventListener('controllerchange', () => {
+                                // Mostra un avviso all'utente
+                                var myModal = new bootstrap.Modal(document.getElementById('reloadConfirmationModal'), {});
+                                myModal.show();
+
+                                document.getElementById('reloadPageButton').addEventListener('click', function () {
+                                    window.location.reload();
+                                });
+                            });
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
