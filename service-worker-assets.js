@@ -193,11 +193,11 @@
       "url": "images\/icons\/icon-512.png"
     },
     {
-      "hash": "sha256-FxGzaL76sA+dxoiNnDkcnWNdAMwATzc2eX3lRC9Q+4Q=",
+      "hash": "sha256-dj5DoRHdNTz9R0X0aZ13A5KVQdAkGzDq7n0r9zaJlXM=",
       "url": "index.html"
     },
     {
-      "hash": "sha256-xwd34gIVZ2Zv26z1RkkXmoGkYiExA4d08fo\/yrEPtxM=",
+      "hash": "sha256-c5aMMWlHqwT0pb3pT27M5ERWdUjsU1A\/bcwb+01t0SI=",
       "url": "js\/js_functions.js"
     },
     {
@@ -237,11 +237,11 @@
       "url": "_framework\/icudt_no_CJK.dat"
     },
     {
-      "hash": "sha256-lb1doxMaiHXym4BeGXX3yfSLJRilvcTqAfEhZYLCIkE=",
+      "hash": "sha256-f9uREXW\/33T1EAcPqbi1q9SsOStb9CqPWbCA0L\/jskU=",
       "url": "_framework\/blazor.boot.json"
     },
     {
-      "hash": "sha256-6aVQt39nP9d7PPYaX\/p8p1TcGJ5tEiuNHXl2TZ4kfOk=",
+      "hash": "sha256-\/58\/E\/OhfAcdL5ZrkNoVkm7If6iXGvoi6+souY1Uqpw=",
       "url": "_framework\/BipSi.wasm"
     },
     {
@@ -441,5 +441,5 @@
       "url": "_content\/Microsoft.AspNetCore.Components.WebAssembly.Authentication\/AuthenticationService.js"
     }
   ],
-  "version": "UNmm0u6l"
+  "version": "evVqL8dP"
 };
