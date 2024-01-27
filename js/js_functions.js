@@ -4,6 +4,16 @@ getIsUpdateAvailable = function () {
     return isUpdateAvailable;
 }
 
+forceUpdateServiceWorker = function () {
+    if ('serviceWorker' in navigator) {
+        reg = navigator.serviceWorker.getRegistration();
+        if (reg) {
+            reg.then(function (registration) {
+                registration.update();
+            });
+        }
+    }
+}
 startAppUpdateFlow = async function () {
     reg = await navigator.serviceWorker.getRegistration();
     var userResponse = confirm("Premi Ok per rendere effettivo l'aggiornamento dell'applicazione. L'applicazione verrà riavviata. Se l'applicazione viene chiusa definitivamente, alla riapertura essa sarà comunque aggiornata.");
