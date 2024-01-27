@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="utf-8" />
+    <title>BipSi</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="css/app.css" rel="stylesheet" />
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="images/icons/favicon.png" />
+    <link href="manifest.webmanifest" rel="manifest" />
+    <link rel="apple-touch-icon" sizes="512x512" href="/images/icons/icon-512.png" />
+    <link rel="apple-touch-icon" sizes="192x192" href="/images/icons/icon-192.png" />
+    <!-- If you add any scoped CSS files, uncomment the following to load them
+    <link href="BipSi.styles.css" rel="stylesheet" /> -->
+</head>
+
+<body style="background-color: rgb(177, 214, 175);">
+
+    <!-- Modal Aggiornamento App -->
+    <div class="modal" tabindex="-1" id="reloadConfirmationModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Aggiornamento Applicazione</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Una nuova versione dell'applicazione è stata intallata. Vuoi ricaricare adesso?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                    <button type="button" class="btn btn-primary" id="reloadPageButton">Si</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="app">
+        <div class="d-flex justify-content-center align-items-center"
+            style="width: 100vw; height: 100vh; background-color: rgb(177, 214, 175);">
+            <img src="images/icons/icon-512.png"
+                style="width: 100%; height: 100%; max-width: 512px; max-height: 512px; object-fit: contain;" />
+            </div>
+    </div>
+
+    <div id="blazor-error-ui">
+        An unhandled error has occurred.
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+    <script src="_framework/blazor.webassembly.js"></script>
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="js/js_functions.js"></script>
+    <!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
+    <script>
+
+function invokeServiceWorkerUpdateFlow() {
+    isUpdateAvailable = true;    
+}
+    // check if the browser supports serviceWorker at all
+    if ('serviceWorker' in navigator) {
+        // wait for the page to load
+        registerAndCheckUpdates = async function() {
+            // register the service worker from the file specified
+            const registration = await navigator.serviceWorker.register('/service-worker.js')
+
+            // ensure the case when the updatefound event was missed is also handled
+            // by re-invoking the prompt when there's a waiting Service Worker
+            if (registration.waiting) {
+                invokeServiceWorkerUpdateFlow()
+            }
+
+            // detect Service Worker update available and wait for it to become installed
+            registration.addEventListener('updatefound', () => {
+                if (registration.installing) {
+                    // wait until the new Service worker is actually installed (ready to take over)
+                    registration.installing.addEventListener('statechange', () => {
+                        if (registration.waiting) {
+                            // if there's an existing controller (previous Service Worker), show the prompt
+                            if (navigator.serviceWorker.controller) {
+                                invokeServiceWorkerUpdateFlow(registration)
+                            } else {
+                                // otherwise it's the first install, nothing to do
+                                console.log('Service Worker initialized for the first time')
+                            }
+                        }
+                    })
+                }
+            })
+
+            let refreshing = false;
+
+            // detect controller change and refresh the page
+            navigator.serviceWorker.addEventListener('controllerchange', () => {
+                if (!refreshing) {
+                    window.location.reload()
+                    refreshing = true
+                }
+            })
+        }
+        // wait for the page to load
+        window.addEventListener('load', registerAndCheckUpdates);
+
+        // also check for updates when the window receives focus
+        window.addEventListener('focus', async function() {
+            console.log('Window received focus');
+            const registration = await window.navigator.serviceWorker.getRegistration();
+            if (registration) {
+                registration.update();
+                registerAndCheckUpdates();
+            }
+        });
+    }
+    </script>
+</body>
+
+</html>
