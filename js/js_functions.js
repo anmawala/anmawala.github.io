@@ -8,9 +8,7 @@ forceUpdateServiceWorker = function () {
     if ('serviceWorker' in navigator) {
         reg = navigator.serviceWorker.getRegistration();
         if (reg) {
-            reg.then(function (registration) {
-                registration.update();
-            });
+            reg.update();
         }
     }
 }

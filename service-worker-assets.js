@@ -197,7 +197,7 @@
       "url": "index.html"
     },
     {
-      "hash": "sha256-PBG\/qdBRcwc\/aMHrVuJRsaRj511Kp7FmO601CtWlacs=",
+      "hash": "sha256-xwd34gIVZ2Zv26z1RkkXmoGkYiExA4d08fo\/yrEPtxM=",
       "url": "js\/js_functions.js"
     },
     {
@@ -237,11 +237,11 @@
       "url": "_framework\/icudt_no_CJK.dat"
     },
     {
-      "hash": "sha256-mtkDCSGuFwavS6DgMixhG2R6p2\/PCatE6eM7bKa3HtU=",
+      "hash": "sha256-lb1doxMaiHXym4BeGXX3yfSLJRilvcTqAfEhZYLCIkE=",
       "url": "_framework\/blazor.boot.json"
     },
     {
-      "hash": "sha256-ZFB6RvZ\/Kt04Zd2sczVL508ATsy3yW0qwwwWewsxp9g=",
+      "hash": "sha256-6aVQt39nP9d7PPYaX\/p8p1TcGJ5tEiuNHXl2TZ4kfOk=",
       "url": "_framework\/BipSi.wasm"
     },
     {
@@ -441,5 +441,5 @@
       "url": "_content\/Microsoft.AspNetCore.Components.WebAssembly.Authentication\/AuthenticationService.js"
     }
   ],
-  "version": "TO5DknCU"
+  "version": "fqx8fz+V"
 };
