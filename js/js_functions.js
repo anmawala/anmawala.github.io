@@ -1,16 +1,16 @@
 isServiceWorkerInstalling = async function () {
-    reg = await navigator.serviceWorker.getRegistration();
-    if(reg){
-        return reg.installing;
+    let reg = await navigator.serviceWorker.getRegistration();
+    if(reg && reg.installing){
+        return true;
     }else {
         return false;
     }
 }
 
 isServiceWorkerWaiting = async function () {
-    reg = await navigator.serviceWorker.getRegistration();
-    if(reg){
-        return reg.waiting;
+    let reg = await navigator.serviceWorker.getRegistration();
+    if(reg && reg.waiting){
+        return true;
     }else {
         return false;
     }
