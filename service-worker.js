@@ -66,4 +66,4 @@ async function onFetch(event) {
     //console.info('Service worker: Fetch - Fetching from network');
     return cachedResponse || fetch(event.request);
 }
-/* Manifest version: qh1Rub2t */
+/* Manifest version: 4nTc8/dD */
