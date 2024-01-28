@@ -237,11 +237,11 @@
       "url": "_framework\/icudt_no_CJK.dat"
     },
     {
-      "hash": "sha256-otItWLa0yKHUdRqPjlTHJqKAOZcCR7ivJqCX0ToBn8w=",
+      "hash": "sha256-u7iN7t5kKGJHtS\/SdVaWApkgfD1ho\/Ej2Lg\/IazNlk8=",
       "url": "_framework\/blazor.boot.json"
     },
     {
-      "hash": "sha256-9lsV61LK3jI5d5g+QcLNHu5Ast1F8407onOnfZPMhco=",
+      "hash": "sha256-k+k+h8UcsSvZwOHruq4afbItanaov5evtWuT+nrcKPU=",
       "url": "_framework\/BipSi.wasm"
     },
     {
@@ -441,5 +441,5 @@
       "url": "_content\/Microsoft.AspNetCore.Components.WebAssembly.Authentication\/AuthenticationService.js"
     }
   ],
-  "version": "kpA5k\/sv"
+  "version": "xerCcSyG"
 };
