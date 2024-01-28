@@ -181,7 +181,7 @@
       "url": "css\/app.css"
     },
     {
-      "hash": "sha256-Qx6xm\/NirZaC3JPE4Pchcfs+Zb946Rpn8C+6vX7krHQ=",
+      "hash": "sha256-LBw5Hgl97X+p5KfDb2QluJhnjOpLU2NGjjVd3yOgDVU=",
       "url": "css\/customisations.css"
     },
     {
@@ -445,5 +445,5 @@
       "url": "_content\/Microsoft.AspNetCore.Components.WebAssembly.Authentication\/AuthenticationService.js"
     }
   ],
-  "version": "FEGPLqz3"
+  "version": "KS5qtM6x"
 };
