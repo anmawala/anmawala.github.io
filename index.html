@@ -57,6 +57,7 @@
     <script>
 
 function invokeServiceWorkerUpdateFlow() {
+    document.getElementById('updating').style.display = 'none';
     isUpdateAvailable = true;    
 }
     // check if the browser supports serviceWorker at all
@@ -74,13 +75,14 @@ function invokeServiceWorkerUpdateFlow() {
 
             // detect Service Worker update available and wait for it to become installed
             registration.addEventListener('updatefound', () => {
+                document.getElementById('updating').style.display = 'block';
                 if (registration.installing) {
                     // wait until the new Service worker is actually installed (ready to take over)
                     registration.installing.addEventListener('statechange', () => {
                         if (registration.waiting) {
                             // if there's an existing controller (previous Service Worker), show the prompt
                             if (navigator.serviceWorker.controller) {
-                                invokeServiceWorkerUpdateFlow(registration)
+                                invokeServiceWorkerUpdateFlow()
                             } else {
                                 // otherwise it's the first install, nothing to do
                                 console.log('Service Worker initialized for the first time')
