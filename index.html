@@ -81,7 +81,7 @@ function invokeServiceWorkerUpdateFlow() {
                 
                 var updatingElement = document.getElementById('updatingLabel');
                 if (updatingElement) {
-                    updatingElement.style.display = 'none';
+                    updatingElement.style.display = 'block';
                 }
 
                 if (registration.installing) {
@@ -114,8 +114,13 @@ function invokeServiceWorkerUpdateFlow() {
         window.addEventListener('load', registerAndCheckUpdates);
 
         // also check for updates when the window receives focus
-        window.addEventListener('focus', function() {
-            registerAndCheckUpdates();
+        window.addEventListener('focus', async function() {
+            console.log('Window received focus');
+            const registration = await window.navigator.serviceWorker.getRegistration();
+            if (registration) {
+                registration.update();
+                registerAndCheckUpdates();
+            }
         });
     }
     </script>
