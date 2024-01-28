@@ -114,13 +114,8 @@ function invokeServiceWorkerUpdateFlow() {
         window.addEventListener('load', registerAndCheckUpdates);
 
         // also check for updates when the window receives focus
-        window.addEventListener('focus', async function() {
-            console.log('Window received focus');
-            const registration = await window.navigator.serviceWorker.getRegistration();
-            if (registration) {
-                registration.update();
-                registerAndCheckUpdates();
-            }
+        window.addEventListener('focus', function() {
+            registerAndCheckUpdates();
         });
     }
     </script>
