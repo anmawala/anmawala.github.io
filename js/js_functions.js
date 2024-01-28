@@ -25,14 +25,10 @@ forceServiceWorkerUpdateCheck = async function () {
 
 startAppUpdateFlow = async function () {
     reg = await navigator.serviceWorker.getRegistration();
-    var userResponse = confirm("Premi Ok per rendere effettivo l'aggiornamento dell'applicazione. L'applicazione verrà riavviata. Se l'applicazione viene chiusa definitivamente, alla riapertura essa sarà comunque aggiornata.");
-
-    if (userResponse) {
-        if (reg.waiting) {
-            // let waiting Service Worker know it should became active
-            reg.waiting.postMessage('SKIP_WAITING');
-            window.location.reload();
-        }
+    if (reg && reg.waiting) {
+        // let waiting Service Worker know it should became active
+        reg.waiting.postMessage('SKIP_WAITING');
+        window.location.reload();
     }
 }
 
