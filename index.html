@@ -119,7 +119,6 @@ function invokeServiceWorkerUpdateFlow() {
             const registration = await window.navigator.serviceWorker.getRegistration();
             if (registration) {
                 registration.update();
-                registerAndCheckUpdates();
             }
         });
     }
