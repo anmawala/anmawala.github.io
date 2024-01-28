@@ -181,7 +181,7 @@
       "url": "css\/app.css"
     },
     {
-      "hash": "sha256-5YjYUO140mtk05z\/ul5SMOcPetihy+vWsE6zc+GCiwg=",
+      "hash": "sha256-\/84G1jO7SlGaTfOVCSJxPMebPPX1EMrJHnXAGkouPdY=",
       "url": "css\/customisations.css"
     },
     {
@@ -197,7 +197,7 @@
       "url": "images\/icons\/icon-512.png"
     },
     {
-      "hash": "sha256-YOnZnZSPX9nlJP6Ria0Xe7KDgvg+R5x5f+6oTwqm3F4=",
+      "hash": "sha256-WNQAjueBBtmOeuU4RnniEB7m+QDLd3JVA+j26iIG7VA=",
       "url": "index.html"
     },
     {
@@ -445,5 +445,5 @@
       "url": "_content\/Microsoft.AspNetCore.Components.WebAssembly.Authentication\/AuthenticationService.js"
     }
   ],
-  "version": "OgA8olPa"
+  "version": "vvZTGm74"
 };
