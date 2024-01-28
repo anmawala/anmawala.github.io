@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "BipSi",
   "resources": {
-    "hash": "sha256-aWPhzWbPxdCERTN7hYEiZgDcyS8t+eBSLubarb4FZF8=",
+    "hash": "sha256-pfkQMge+ENWzx084ZUgliuVksLA926F0FGgtF1aPfmg=",
     "jsModuleNative": {
       "dotnet.native.8.0.1.p35uiwy4zk.js": "sha256-SGOlISx+3G4kkvpC9Uq3qoPGsnjxGmW61QBev0lyI5U="
     },
@@ -17,7 +17,7 @@
       "icudt_no_CJK.dat": "sha256-L7sV7NEYP37/Qr2FPCePo5cJqRgTXRwGHuwF5Q+0Nfs="
     },
     "assembly": {
-      "BipSi.wasm": "sha256-0AtQ+HMU5xhga4jY78hrOq2NzfW6u8cgTfAbnL58+T4=",
+      "BipSi.wasm": "sha256-MJmfVPBKXG7qGlB8awwJok45Cyf52S1rU7Xchpvkbu0=",
       "Microsoft.AspNetCore.Authorization.wasm": "sha256-t4ppXQK0oVTK0NSnw6/Bwq+FJj9OT6UK6a4DhxM7Qq4=",
       "Microsoft.AspNetCore.Components.Authorization.wasm": "sha256-MdNVgc0cubEGKl8xL3P9ybipvFSaVaaYPYL5BRbl1no=",
       "Microsoft.AspNetCore.Components.wasm": "sha256-HExSaqxju42+LRovqCEgve9aNqK6Dn7Z+2VUdZ/kaVc=",
