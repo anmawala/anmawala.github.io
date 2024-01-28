@@ -1,7 +1,19 @@
-var isUpdateAvailable = false;
+isServiceWorkerInstalling = async function () {
+    reg = await navigator.serviceWorker.getRegistration();
+    if(reg){
+        return reg.installing;
+    }else {
+        return false;
+    }
+}
 
-getIsUpdateAvailable = function () {
-    return isUpdateAvailable;
+isServiceWorkerWaiting = async function () {
+    reg = await navigator.serviceWorker.getRegistration();
+    if(reg){
+        return reg.waiting;
+    }else {
+        return false;
+    }
 }
 
 startAppUpdateFlow = async function () {
@@ -14,7 +26,6 @@ startAppUpdateFlow = async function () {
             reg.waiting.postMessage('SKIP_WAITING')
         }
     }
-    isUpdateAvailable = false;
 }
 
 checkGeolocationPermission = function () {
