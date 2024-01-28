@@ -23,28 +23,28 @@ const baseUrl = new URL(base, self.origin);
 const manifestUrlList = self.assetsManifest.assets.map(asset => new URL(asset.url, baseUrl).href);
 
 async function onInstall(event) {
-    console.info('Service worker: Install');
+    //console.info('Service worker: Install');
     // Fetch and cache all matching items from the assets manifest
-    console.info('Service worker: Caching offline assets');
+    //console.info('Service worker: Caching offline assets');
     const assetsRequests = self.assetsManifest.assets
         .filter(asset => offlineAssetsInclude.some(pattern => pattern.test(asset.url)))
         .filter(asset => !offlineAssetsExclude.some(pattern => pattern.test(asset.url)))
         .map(asset => new Request(asset.url, { integrity: asset.hash, cache: 'no-cache' }));
     await caches.open(cacheName).then(cache => cache.addAll(assetsRequests));
-    console.info('Service worker: Offline assets cached');
-    console.info('Service worker: Skip waiting on install');
+    //console.info('Service worker: Offline assets cached');
+    //console.info('Service worker: Skip waiting on install');
 }
 
 async function onActivate(event) {
     // Delete unused caches
-    console.info('Service worker: Activate');
-    console.info('Service worker: Clearing old caches');
+    //console.info('Service worker: Activate');
+    //console.info('Service worker: Clearing old caches');
     const cacheKeys = await caches.keys();
-    console.info('Service worker: Cache keys', cacheKeys);
+    //console.info('Service worker: Cache keys', cacheKeys);
     await Promise.all(cacheKeys
         .filter(key => key.startsWith(cacheNamePrefix) && key !== cacheName)
         .map(key => caches.delete(key)));
-    console.info('Service worker: Done clearing old caches');
+    //console.info('Service worker: Done clearing old caches');
 }
 
 async function onFetch(event) {
@@ -66,4 +66,4 @@ async function onFetch(event) {
     //console.info('Service worker: Fetch - Fetching from network');
     return cachedResponse || fetch(event.request);
 }
-/* Manifest version: TG9MbWFT */
+/* Manifest version: pgErGp5s */

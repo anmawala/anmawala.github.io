@@ -57,7 +57,10 @@
     <script>
 
 function invokeServiceWorkerUpdateFlow() {
-    document.getElementById('updating').style.display = 'none';
+    var updatingElement = document.getElementById('updatingLabel');
+    if (updatingElement) {
+        updatingElement.style.display = 'none';
+    }
     isUpdateAvailable = true;    
 }
     // check if the browser supports serviceWorker at all
@@ -75,7 +78,12 @@ function invokeServiceWorkerUpdateFlow() {
 
             // detect Service Worker update available and wait for it to become installed
             registration.addEventListener('updatefound', () => {
-                document.getElementById('updating').style.display = 'block';
+                
+                var updatingElement = document.getElementById('updatingLabel');
+                if (updatingElement) {
+                    updatingElement.style.display = 'none';
+                }
+
                 if (registration.installing) {
                     // wait until the new Service worker is actually installed (ready to take over)
                     registration.installing.addEventListener('statechange', () => {
