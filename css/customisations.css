@@ -1,11 +1,10 @@
 body{
     min-height: 100vh;
     background: linear-gradient(180deg, rgba(177,214,175,1) 37%, rgba(18,105,119,0.5) 100%);
-    margin-bottom: 56px;
 }
 
 .btn-primary {
-    box-shadow: 10px 10px 10px rgb(169, 169, 169);
+    box-shadow: 3px 3px 5px rgb(169, 169, 169);
     --bs-btn-color: #fff;
     --bs-btn-bg: #126977e3;
     --bs-btn-border-color: #126977e3;

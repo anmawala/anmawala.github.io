@@ -126,7 +126,12 @@ showToast = function (toastId) {
         toast.show();
     }
 }
+// Local Storage
 
+function openStampingsDb() {
+    var request = indexedDB.open("Stampings", 1);
+    return request;
+}
 
 function onupgradeneeded(event) {
     const db = event.target.result;
@@ -141,12 +146,13 @@ function onupgradeneeded(event) {
             objectStore.createIndex("enablementName", "enablementName", { unique: false });
             objectStore.createIndex("enablementStartTime", "oraInizioPrestazione", { unique: false });
             objectStore.createIndex("enablementEndTime", "enablementEndTime", { unique: false });
+            objectStore.createIndex("notime", "notime", { unique: false })
         };
 
 
 clockingIn = function ($p) {
     return new Promise((resolve, reject) => {
-        const request = indexedDB.open("Stampings");
+        const request = openStampingsDb();
 
         request.onupgradeneeded = onupgradeneeded;
 
@@ -158,14 +164,15 @@ clockingIn = function ($p) {
             const stamp = {
                 userId : $p.userId,
                 clockingIn: $p.clockingIn,
-                clockingOut: null,
+                clockingOut: $p.clockingOut,
                 userEnablementId: $p.userEnablementId,
                 structureId: $p.structureId,
                 structureName: $p.structureName,
                 enablementId: $p.enablementId,
                 enablementName: $p.enablementName,
                 enablementStartTime: $p.enablementStartTime,
-                enablementEndTime: $p.enablementEndTime
+                enablementEndTime: $p.enablementEndTime,
+                notime: $p.notime
             };
 
             const requestAdd = objectStore.add(stamp);
@@ -187,7 +194,7 @@ clockingIn = function ($p) {
 
 getStamps = function (userId, inOnly = false) {
     return new Promise((resolve, reject) => {
-        const request = indexedDB.open("Stampings");
+        const request = openStampingsDb();
 
         request.onupgradeneeded = onupgradeneeded;
 
@@ -234,7 +241,7 @@ getStamps = function (userId, inOnly = false) {
 }
 
 deleteStamp = function (id) {
-    const request = indexedDB.open("Stampings");
+    const request = openStampingsDb();
 
     request.onupgradeneeded = onupgradeneeded;
 
@@ -259,7 +266,7 @@ deleteStamp = function (id) {
 
 
 clockingOut = function (id, clockingOut) {
-    const request = indexedDB.open("Stampings");
+    const request = openStampingsDb();
 
     request.onupgradeneeded = onupgradeneeded;
 
@@ -295,7 +302,7 @@ clockingOut = function (id, clockingOut) {
 }
 
 deleteStamp = function (id) {
-    const request = indexedDB.open("Stampings");
+    const request = openStampingsDb();
 
     request.onupgradeneeded = onupgradeneeded;
 
