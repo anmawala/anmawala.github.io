@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "BipSi",
   "resources": {
-    "hash": "sha256-cd1GZ1i6r64mdu3uTBQo8TPxtEqYsuNO8Wy96TYqvaM=",
+    "hash": "sha256-l6cBbqOE7yuelF2ky0KJfoDKVLtnWczP3Yq1mYp2gAA=",
     "jsModuleNative": {
       "dotnet.native.8.0.1.p35uiwy4zk.js": "sha256-SGOlISx+3G4kkvpC9Uq3qoPGsnjxGmW61QBev0lyI5U="
     },
@@ -17,10 +17,10 @@
       "icudt_no_CJK.dat": "sha256-L7sV7NEYP37/Qr2FPCePo5cJqRgTXRwGHuwF5Q+0Nfs="
     },
     "assembly": {
-      "BipSi.wasm": "sha256-WIEkNycr9ZFXtG/7IX6hXZg4bT+qAZRDzSl8lysJTXA=",
+      "BipSi.wasm": "sha256-CHhg2cagtLYsIs/YhS/mDSedwgXpabXpxYjrKDlB3B4=",
       "Microsoft.AspNetCore.Authorization.wasm": "sha256-t4ppXQK0oVTK0NSnw6/Bwq+FJj9OT6UK6a4DhxM7Qq4=",
       "Microsoft.AspNetCore.Components.Authorization.wasm": "sha256-MdNVgc0cubEGKl8xL3P9ybipvFSaVaaYPYL5BRbl1no=",
-      "Microsoft.AspNetCore.Components.wasm": "sha256-Z42/MefiPxIzrVafaTjkNJ+pCNXY0NKU/4f8RZd18xQ=",
+      "Microsoft.AspNetCore.Components.wasm": "sha256-mHMVzEj3PrLYeBsBdFqP1Lu+2a5fM1m9ZJdsBgpvWII=",
       "Microsoft.AspNetCore.Components.Web.wasm": "sha256-6Ii0xui1NKvy2fCRUKlkDuawuve/InLIwkk05KvTY+0=",
       "Microsoft.AspNetCore.Components.WebAssembly.wasm": "sha256-Ws5szf6fWPAXna+XyWsAhavx+WDFcA/91DQ7iPRPCMs=",
       "Microsoft.AspNetCore.Metadata.wasm": "sha256-P9Hj/2O8Roh1Q3Y1ORh4/6kAfY/fYWlp/IfjEmGxHYI=",
@@ -51,7 +51,7 @@
       "System.Memory.wasm": "sha256-D3cYmwfcsfXcbJpvtPW9Bdahm+V0aYKnsLRqY90xr5Q=",
       "System.Net.Http.wasm": "sha256-EkPx0qkKM13cwOWiXzNVZ+hBtBdpmgAillgz2jLH++Y=",
       "System.Net.Primitives.wasm": "sha256-nF9fk722J9hXgRTF4PmISiSuCglcT8FA8U0NrFaluAg=",
-      "System.Private.CoreLib.wasm": "sha256-Wgf7MfLI7co+rZaUsGA1VZC1MpdUw0gd9XmP7/CqtjU=",
+      "System.Private.CoreLib.wasm": "sha256-TBztTCPqncIHK2Uh2ZXigZ6nFEHNQzt5qNCF8ovcmiM=",
       "System.Private.Uri.wasm": "sha256-XwIcyPqyfGcpv5WMFfkv7SIzyxIv79jhJE5XFBohc+g=",
       "System.Private.Xml.wasm": "sha256-fYGv7AZNQ2Bhmb/rkZphhnaMPFe+Ex55hcATh2ImSPE=",
       "System.Runtime.InteropServices.JavaScript.wasm": "sha256-wIi66aTOmhZVzepyAzcEdbo2ANdpeESii99H6LjInq0=",
