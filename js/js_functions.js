@@ -138,7 +138,9 @@ function onupgradeneeded(event) {
             const objectStore = db.createObjectStore("Stampings", { keyPath: "id", autoIncrement: true });
             objectStore.createIndex("userId", "userId", { unique: false });
             objectStore.createIndex("clockingIn", "clockingIn", { unique: false });
+            objectStore.createIndex("manualIn", "manualIn", { unique: false });
             objectStore.createIndex("clockingOut", "clockingOut", { unique: false });
+            objectStore.createIndex("manualOut", "manualOut", { unique: false });
             objectStore.createIndex("userEnablementId", "userEnablementId", { unique: false });
             objectStore.createIndex("structureId", "structureId", { unique: false });
             objectStore.createIndex("StructureName", "StructureName", { unique: false });
@@ -164,6 +166,7 @@ clockingIn = function ($p) {
             const stamp = {
                 userId : $p.userId,
                 clockingIn: $p.clockingIn,
+                manualIn: $p.manualIn,
                 clockingOut: $p.clockingOut,
                 userEnablementId: $p.userEnablementId,
                 structureId: $p.structureId,
@@ -323,4 +326,104 @@ deleteStamp = function (id) {
     request.onerror = function (event) {
         console.error("Error opening database");
     };
+}
+
+manualClocking = function ($p) {
+    return new Promise((resolve, reject) => {
+        const request = openStampingsDb();
+
+        request.onupgradeneeded = onupgradeneeded;
+
+        request.onsuccess = function (event) {
+            const db = event.target.result;
+            const transaction = db.transaction(["Stampings"], "readwrite");
+            const objectStore = transaction.objectStore("Stampings");
+
+            if($p.manualOut && !$p.manualIn){
+                const requestGet = objectStore.get($p.stampId);
+                requestGet.onsuccess = function (event) {
+                    const record = event.target.result;
+                    if (record) {
+                        record.clockingOut = $p.clockingOut;
+                        record.manualOut = true;
+                        const requestUpdate = objectStore.put(record);
+                        requestUpdate.onsuccess = function (event) {
+                            console.log("Record updated successfully");
+                            resolve(true);
+                        };
+                        requestUpdate.onerror = function (event) {
+                            console.error("Error updating record");
+                            reject(false);
+                        };
+                    }
+                };
+                requestGet.onerror = function (event) {
+                    console.error("Error retrieving record");
+                    reject(false);
+                }
+            }
+
+            if($p.manualIn && $p.manualOut == null){
+                const stamp = {
+                    userId : $p.userId,
+                    clockingIn: $p.clockingIn,
+                    manualIn: $p.manualIn,
+                    clockingOut: null,
+                    manualOut: null,
+                    userEnablementId: $p.userEnablementId,
+                    structureId: $p.structureId,
+                    structureName: $p.structureName,
+                    enablementId: $p.enablementId,
+                    enablementName: $p.enablementName,
+                    enablementStartTime: $p.enablementStartTime,
+                    enablementEndTime: $p.enablementEndTime,
+                    notime: $p.notime
+                };
+    
+                const requestAdd = objectStore.add(stamp);
+    
+                requestAdd.onsuccess = function (event) {
+                    resolve(true);
+                };
+    
+                requestAdd.onerror = function (event) {
+                    reject(false);
+                };
+            }else{
+                const stamp = {
+                    userId : $p.userId,
+                    clockingIn: $p.clockingIn,
+                    manualIn: $p.manualIn,
+                    clockingOut: $p.clockingOut,
+                    manualOut: $p.manualOut,
+                    userEnablementId: $p.userEnablementId,
+                    structureId: $p.structureId,
+                    structureName: $p.structureName,
+                    enablementId: $p.enablementId,
+                    enablementName: $p.enablementName,
+                    enablementStartTime: $p.enablementStartTime,
+                    enablementEndTime: $p.enablementEndTime,
+                    notime: $p.notime
+                };
+    
+                const requestAdd = objectStore.add(stamp);
+    
+                requestAdd.onsuccess = function (event) {
+                    resolve(true);
+                };
+    
+                requestAdd.onerror = function (event) {
+                    reject(false);
+                };
+            }
+
+            request.onerror = function (event) {
+                reject(false);
+            };
+        };
+
+        request.onerror = function (event) {
+            reject(false);
+        };
+    });
 }
