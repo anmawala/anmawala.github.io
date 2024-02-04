@@ -166,8 +166,9 @@ clockingIn = function ($p) {
             const stamp = {
                 userId : $p.userId,
                 clockingIn: $p.clockingIn,
-                manualIn: $p.manualIn,
+                manualIn: false,
                 clockingOut: $p.clockingOut,
+                manualOut: $p.manualOut,
                 userEnablementId: $p.userEnablementId,
                 structureId: $p.structureId,
                 structureName: $p.structureName,
@@ -328,7 +329,7 @@ deleteStamp = function (id) {
     };
 }
 
-manualClocking = function ($p) {
+clockingSave = function ($type, $p) {
     return new Promise((resolve, reject) => {
         const request = openStampingsDb();
 
@@ -338,58 +339,8 @@ manualClocking = function ($p) {
             const db = event.target.result;
             const transaction = db.transaction(["Stampings"], "readwrite");
             const objectStore = transaction.objectStore("Stampings");
-
-            if($p.manualOut && !$p.manualIn){
-                const requestGet = objectStore.get($p.stampId);
-                requestGet.onsuccess = function (event) {
-                    const record = event.target.result;
-                    if (record) {
-                        record.clockingOut = $p.clockingOut;
-                        record.manualOut = true;
-                        const requestUpdate = objectStore.put(record);
-                        requestUpdate.onsuccess = function (event) {
-                            console.log("Record updated successfully");
-                            resolve(true);
-                        };
-                        requestUpdate.onerror = function (event) {
-                            console.error("Error updating record");
-                            reject(false);
-                        };
-                    }
-                };
-                requestGet.onerror = function (event) {
-                    console.error("Error retrieving record");
-                    reject(false);
-                }
-            }
-
-            if($p.manualIn && $p.manualOut == null){
-                const stamp = {
-                    userId : $p.userId,
-                    clockingIn: $p.clockingIn,
-                    manualIn: $p.manualIn,
-                    clockingOut: null,
-                    manualOut: null,
-                    userEnablementId: $p.userEnablementId,
-                    structureId: $p.structureId,
-                    structureName: $p.structureName,
-                    enablementId: $p.enablementId,
-                    enablementName: $p.enablementName,
-                    enablementStartTime: $p.enablementStartTime,
-                    enablementEndTime: $p.enablementEndTime,
-                    notime: $p.notime
-                };
-    
-                const requestAdd = objectStore.add(stamp);
-    
-                requestAdd.onsuccess = function (event) {
-                    resolve(true);
-                };
-    
-                requestAdd.onerror = function (event) {
-                    reject(false);
-                };
-            }else{
+        
+            if($type == "in" || $type == "inout"){
                 const stamp = {
                     userId : $p.userId,
                     clockingIn: $p.clockingIn,
@@ -415,6 +366,28 @@ manualClocking = function ($p) {
                 requestAdd.onerror = function (event) {
                     reject(false);
                 };
+            }else if($type == "out"){
+                const requestGet = objectStore.get($p.stampId);
+                requestGet.onsuccess = function (event) {
+                    const record = event.target.result;
+                    if (record) {
+                        record.clockingOut = $p.clockingOut;
+                        record.manualOut = $p.manualOut;
+                        const requestUpdate = objectStore.put(record);
+                        requestUpdate.onsuccess = function (event) {
+                            console.log("Record updated successfully");
+                            resolve(true);
+                        };
+                        requestUpdate.onerror = function (event) {
+                            console.error("Error updating record");
+                            reject(false);
+                        };
+                    }
+                };
+                requestGet.onerror = function (event) {
+                    console.error("Error retrieving record");
+                    reject(false);
+                }
             }
 
             request.onerror = function (event) {
