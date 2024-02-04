@@ -400,3 +400,15 @@ clockingSave = function ($type, $p) {
         };
     });
 }
+
+resetData = function () {
+    const request = indexedDB.deleteDatabase("Stampings");
+    request.onsuccess = function () {
+        console.log("Database deleted successfully");
+    };
+    request.onerror = function () {
+        console.error("Error deleting database");
+    };
+    
+    localStorage.clear();
+}
