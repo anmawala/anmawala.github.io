@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "BipSi",
   "resources": {
-    "hash": "sha256-bb/EcAPQ/6Nflmsu84ucvrCnItBMT7M1PdU+QPjJPy0=",
+    "hash": "sha256-sQRIhw0imep2NLsaFSxPbjRsskSg4agOKcrUaw+51a4=",
     "jsModuleNative": {
       "dotnet.native.8.0.1.p35uiwy4zk.js": "sha256-SGOlISx+3G4kkvpC9Uq3qoPGsnjxGmW61QBev0lyI5U="
     },
@@ -17,7 +17,7 @@
       "icudt_no_CJK.dat": "sha256-L7sV7NEYP37/Qr2FPCePo5cJqRgTXRwGHuwF5Q+0Nfs="
     },
     "assembly": {
-      "BipSi.wasm": "sha256-gFa4vusJqIEwDRCBJpOnTWoa4CQrlIyNaN7q4XRezu4=",
+      "BipSi.wasm": "sha256-6Fj9hSkgY4jWzDSCB0h5WKMR6lGgQaF0i50otKwhOdo=",
       "Microsoft.AspNetCore.Authorization.wasm": "sha256-t4ppXQK0oVTK0NSnw6/Bwq+FJj9OT6UK6a4DhxM7Qq4=",
       "Microsoft.AspNetCore.Components.Authorization.wasm": "sha256-MdNVgc0cubEGKl8xL3P9ybipvFSaVaaYPYL5BRbl1no=",
       "Microsoft.AspNetCore.Components.wasm": "sha256-pOJF4A5/7fb4T6VuTt/bEZ1i/SJkMfFkg7X1MhtiG1U=",
@@ -42,7 +42,7 @@
       "System.Collections.Concurrent.wasm": "sha256-Wpl2E0FsKHzhZLWmO8fY0LM65P8qU9/fKfAPF/uIr80=",
       "System.Collections.wasm": "sha256-LureMJOfZttK4eGE0b7mTsESHsQncpvi9WZTVC3AcEQ=",
       "System.ComponentModel.wasm": "sha256-/6Kik6mC6ZHx8OXft116HbGv8VWDCF3oge/a6pf8jB8=",
-      "System.Console.wasm": "sha256-tthBJwOnd2KLRrNxUYIGTPRqCwqAun/U9DdiqUvoTHI=",
+      "System.Console.wasm": "sha256-Ih4tKZfeweb9kto2IJSwTjf144fRWl0wyK6pGEFibBE=",
       "System.Diagnostics.DiagnosticSource.wasm": "sha256-tc5cNp2AdAb19E9oE97S3XSPP781074rqM4nseLApqo=",
       "System.Formats.Asn1.wasm": "sha256-XOTGKjToqZ/4/2mXwGRHjA+6/DCnrn2rZh+plL2Wtr0=",
       "System.IdentityModel.Tokens.Jwt.wasm": "sha256-imkKl05XqXdHBH/La4w7StnpT1ybHeZTTpbkz5zkxIU=",

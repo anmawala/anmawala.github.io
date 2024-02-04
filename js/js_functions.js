@@ -82,6 +82,7 @@ startWatchingPosition = function (minAccuracy) {
     });
 }
 
+// Local Storage
 saveToLocalStorage = function (key, value) {
     localStorage.setItem(key, value);
 }
@@ -89,11 +90,13 @@ readFromLocalStorage = function (key) {
     return localStorage.getItem(key);
 }
 
+// Modals
 showModal = function (modalId) {
     var myModal = new bootstrap.Modal(document.getElementById(modalId), {});
     myModal.show();
 }
 
+// Connection
 checkConnection = async function () {
     try {
         const response = await fetch("https://www.google.com", { mode: 'no-cors' });
@@ -104,6 +107,8 @@ checkConnection = async function () {
         return false;
     }
 }
+
+// Other
 
 hideElement = function (elementId) {
     var element = document.getElementById(elementId);
@@ -126,7 +131,21 @@ showToast = function (toastId) {
         toast.show();
     }
 }
-// Local Storage
+
+resetData = function () {
+    const request = indexedDB.deleteDatabase("Stampings");
+    request.onsuccess = function () {
+        console.log("Database deleted successfully");
+    };
+    request.onerror = function () {
+        console.error("Error deleting database");
+    };
+
+    localStorage.clear();
+}
+
+
+// IndexedDB
 
 function openStampingsDb() {
     var request = indexedDB.open("Stampings", 1);
@@ -135,7 +154,7 @@ function openStampingsDb() {
 
 function onupgradeneeded(event) {
     const db = event.target.result;
-            const objectStore = db.createObjectStore("Stampings", { keyPath: "id", autoIncrement: true });
+            const objectStore = db.createObjectStore("Stampings", { keyPath: "uniqueKey"});
             objectStore.createIndex("userId", "userId", { unique: false });
             objectStore.createIndex("clockingIn", "clockingIn", { unique: false });
             objectStore.createIndex("manualIn", "manualIn", { unique: false });
@@ -150,51 +169,6 @@ function onupgradeneeded(event) {
             objectStore.createIndex("enablementEndTime", "enablementEndTime", { unique: false });
             objectStore.createIndex("notime", "notime", { unique: false })
         };
-
-
-clockingIn = function ($p) {
-    return new Promise((resolve, reject) => {
-        const request = openStampingsDb();
-
-        request.onupgradeneeded = onupgradeneeded;
-
-        request.onsuccess = function (event) {
-            const db = event.target.result;
-            const transaction = db.transaction(["Stampings"], "readwrite");
-            const objectStore = transaction.objectStore("Stampings");
-
-            const stamp = {
-                userId : $p.userId,
-                clockingIn: $p.clockingIn,
-                manualIn: false,
-                clockingOut: $p.clockingOut,
-                manualOut: $p.manualOut,
-                userEnablementId: $p.userEnablementId,
-                structureId: $p.structureId,
-                structureName: $p.structureName,
-                enablementId: $p.enablementId,
-                enablementName: $p.enablementName,
-                enablementStartTime: $p.enablementStartTime,
-                enablementEndTime: $p.enablementEndTime,
-                notime: $p.notime
-            };
-
-            const requestAdd = objectStore.add(stamp);
-
-            requestAdd.onsuccess = function (event) {
-                resolve(true);
-            };
-
-            requestAdd.onerror = function (event) {
-                reject(false);
-            };
-        };
-
-        request.onerror = function (event) {
-            reject(false);
-        };
-    });
-}
 
 getStamps = function (userId, inOnly = false) {
     return new Promise((resolve, reject) => {
@@ -268,67 +242,6 @@ deleteStamp = function (id) {
     };
 }
 
-
-clockingOut = function (id, clockingOut) {
-    const request = openStampingsDb();
-
-    request.onupgradeneeded = onupgradeneeded;
-
-    request.onsuccess = function (event) {
-        const db = event.target.result;
-        const transaction = db.transaction(["Stampings"], "readwrite");
-        const objectStore = transaction.objectStore("Stampings");
-
-        const requestGet = objectStore.get(id);
-        requestGet.onsuccess = function (event) {
-            const record = event.target.result;
-            if (record) {
-                record.clockingOut = clockingOut;
-                const requestUpdate = objectStore.put(record);
-                requestUpdate.onsuccess = function (event) {
-                    console.log("Record updated successfully");
-                };
-                requestUpdate.onerror = function (event) {
-                    console.error("Error updating record");
-                };
-            } else {
-                console.error("Record not found");
-            }
-        };
-        requestGet.onerror = function (event) {
-            console.error("Error retrieving record");
-        };
-    };
-
-    request.onerror = function (event) {
-        console.error("Error opening database");
-    };
-}
-
-deleteStamp = function (id) {
-    const request = openStampingsDb();
-
-    request.onupgradeneeded = onupgradeneeded;
-
-    request.onsuccess = function (event) {
-        const db = event.target.result;
-        const transaction = db.transaction(["Stampings"], "readwrite");
-        const objectStore = transaction.objectStore("Stampings");
-
-        const requestDelete = objectStore.delete(id);
-        requestDelete.onsuccess = function (event) {
-            console.log("Record deleted successfully");
-        };
-        requestDelete.onerror = function (event) {
-            console.error("Error deleting record");
-        };
-    };
-
-    request.onerror = function (event) {
-        console.error("Error opening database");
-    };
-}
-
 clockingSave = function ($type, $p) {
     return new Promise((resolve, reject) => {
         const request = openStampingsDb();
@@ -342,6 +255,7 @@ clockingSave = function ($type, $p) {
         
             if($type == "in" || $type == "inout"){
                 const stamp = {
+                    uniqueKey: Date.now(),
                     userId : $p.userId,
                     clockingIn: $p.clockingIn,
                     manualIn: $p.manualIn,
@@ -367,7 +281,7 @@ clockingSave = function ($type, $p) {
                     reject(false);
                 };
             }else if($type == "out"){
-                const requestGet = objectStore.get($p.stampId);
+                const requestGet = objectStore.get($p.uniqueKey);
                 requestGet.onsuccess = function (event) {
                     const record = event.target.result;
                     if (record) {
@@ -399,16 +313,4 @@ clockingSave = function ($type, $p) {
             reject(false);
         };
     });
-}
-
-resetData = function () {
-    const request = indexedDB.deleteDatabase("Stampings");
-    request.onsuccess = function () {
-        console.log("Database deleted successfully");
-    };
-    request.onerror = function () {
-        console.error("Error deleting database");
-    };
-    
-    localStorage.clear();
 }
