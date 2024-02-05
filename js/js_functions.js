@@ -170,6 +170,7 @@ function onupgradeneeded(event) {
             objectStore.createIndex("enablementStartTime", "oraInizioPrestazione", { unique: false });
             objectStore.createIndex("enablementEndTime", "enablementEndTime", { unique: false });
             objectStore.createIndex("notime", "notime", { unique: false })
+            objectStore.createIndex("lastEdit", "lastEdit", { unique: false });
         };
 
 getStamps = function (userId, inOnly = false) {
@@ -272,7 +273,8 @@ clockingSave = function ($type, $p) {
                     roleName: $p.roleName,
                     enablementStartTime: $p.enablementStartTime,
                     enablementEndTime: $p.enablementEndTime,
-                    notime: $p.notime
+                    notime: $p.notime,
+                    lastEdit: Date.now()
                 };
     
                 const requestAdd = objectStore.add(stamp);
@@ -291,6 +293,7 @@ clockingSave = function ($type, $p) {
                     if (record) {
                         record.clockingOut = $p.clockingOut;
                         record.manualOut = $p.manualOut;
+                        record.lastEdit = Date.now();
                         const requestUpdate = objectStore.put(record);
                         requestUpdate.onsuccess = function (event) {
                             console.log("Record updated successfully");
