@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "BipSi",
   "resources": {
-    "hash": "sha256-sQRIhw0imep2NLsaFSxPbjRsskSg4agOKcrUaw+51a4=",
+    "hash": "sha256-LJOgVsHbnvK+xxstg3YpnNtDyx9F+17ThXuZqogee/c=",
     "jsModuleNative": {
       "dotnet.native.8.0.1.p35uiwy4zk.js": "sha256-SGOlISx+3G4kkvpC9Uq3qoPGsnjxGmW61QBev0lyI5U="
     },
@@ -17,7 +17,7 @@
       "icudt_no_CJK.dat": "sha256-L7sV7NEYP37/Qr2FPCePo5cJqRgTXRwGHuwF5Q+0Nfs="
     },
     "assembly": {
-      "BipSi.wasm": "sha256-6Fj9hSkgY4jWzDSCB0h5WKMR6lGgQaF0i50otKwhOdo=",
+      "BipSi.wasm": "sha256-oo11IlHpFZE6591fKqUITMnuOx7FI/gmDbV/2DKE7Bo=",
       "Microsoft.AspNetCore.Authorization.wasm": "sha256-t4ppXQK0oVTK0NSnw6/Bwq+FJj9OT6UK6a4DhxM7Qq4=",
       "Microsoft.AspNetCore.Components.Authorization.wasm": "sha256-MdNVgc0cubEGKl8xL3P9ybipvFSaVaaYPYL5BRbl1no=",
       "Microsoft.AspNetCore.Components.wasm": "sha256-pOJF4A5/7fb4T6VuTt/bEZ1i/SJkMfFkg7X1MhtiG1U=",
@@ -47,11 +47,11 @@
       "System.Formats.Asn1.wasm": "sha256-XOTGKjToqZ/4/2mXwGRHjA+6/DCnrn2rZh+plL2Wtr0=",
       "System.IdentityModel.Tokens.Jwt.wasm": "sha256-imkKl05XqXdHBH/La4w7StnpT1ybHeZTTpbkz5zkxIU=",
       "System.IO.Compression.wasm": "sha256-gM1VWXh7HXorwcAUWn8P+q04KD5NAAMnLrr/WcoHLEI=",
-      "System.Linq.wasm": "sha256-F6hco2S8LHLx8uwLxrlhhDPkbDm2vK5mpYyB7Sm1xhc=",
+      "System.Linq.wasm": "sha256-oqdv12sCsz/xGlcMCyT2aAJyvvTdbs2SHH3LjN/yXPI=",
       "System.Memory.wasm": "sha256-D3cYmwfcsfXcbJpvtPW9Bdahm+V0aYKnsLRqY90xr5Q=",
       "System.Net.Http.wasm": "sha256-EkPx0qkKM13cwOWiXzNVZ+hBtBdpmgAillgz2jLH++Y=",
       "System.Net.Primitives.wasm": "sha256-nF9fk722J9hXgRTF4PmISiSuCglcT8FA8U0NrFaluAg=",
-      "System.Private.CoreLib.wasm": "sha256-dK02mQrLcrPYtjm+K181qwFKISlF8L7eHB5cg1ueBbc=",
+      "System.Private.CoreLib.wasm": "sha256-UJKH5gD+ExXPRoCaRHmxO+TtkaNlbbcT5PSVJnxR1ik=",
       "System.Private.Uri.wasm": "sha256-XwIcyPqyfGcpv5WMFfkv7SIzyxIv79jhJE5XFBohc+g=",
       "System.Private.Xml.wasm": "sha256-fYGv7AZNQ2Bhmb/rkZphhnaMPFe+Ex55hcATh2ImSPE=",
       "System.Runtime.InteropServices.JavaScript.wasm": "sha256-wIi66aTOmhZVzepyAzcEdbo2ANdpeESii99H6LjInq0=",

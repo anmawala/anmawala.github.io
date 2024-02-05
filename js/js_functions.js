@@ -165,6 +165,8 @@ function onupgradeneeded(event) {
             objectStore.createIndex("StructureName", "StructureName", { unique: false });
             objectStore.createIndex("enablementId", "enablementId", { unique: false });
             objectStore.createIndex("enablementName", "enablementName", { unique: false });
+            objectStore.createIndex("roleId", "roleId", { unique: false });
+            objectStore.createIndex("roleName", "roleName", { unique: false });
             objectStore.createIndex("enablementStartTime", "oraInizioPrestazione", { unique: false });
             objectStore.createIndex("enablementEndTime", "enablementEndTime", { unique: false });
             objectStore.createIndex("notime", "notime", { unique: false })
@@ -266,6 +268,8 @@ clockingSave = function ($type, $p) {
                     structureName: $p.structureName,
                     enablementId: $p.enablementId,
                     enablementName: $p.enablementName,
+                    roleId: $p.roleId,
+                    roleName: $p.roleName,
                     enablementStartTime: $p.enablementStartTime,
                     enablementEndTime: $p.enablementEndTime,
                     notime: $p.notime
