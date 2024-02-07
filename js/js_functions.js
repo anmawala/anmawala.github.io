@@ -28,7 +28,7 @@ startAppUpdateFlow = async function () {
     if (reg && reg.waiting) {
         // let waiting Service Worker know it should became active
         reg.waiting.postMessage('SKIP_WAITING');
-        window.location.reload();
+        window.location.reload(true);
     }
 }
 

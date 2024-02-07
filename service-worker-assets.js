@@ -197,11 +197,11 @@
       "url": "images\/icons\/icon-512.png"
     },
     {
-      "hash": "sha256-WNQAjueBBtmOeuU4RnniEB7m+QDLd3JVA+j26iIG7VA=",
+      "hash": "sha256-N\/iEBxyHSXUGvKY9lbKOwxm2osJmqfSX0PRqVDuTIvY=",
       "url": "index.html"
     },
     {
-      "hash": "sha256-u2DuU1Hy+1CG7glFzBsxktmagInTRdpI+0aF6r4ZhEk=",
+      "hash": "sha256-dpA9nqc5G1ptGtCyqB16sVT3yzvm1GMCUmNUOBD9nIU=",
       "url": "js\/js_functions.js"
     },
     {
@@ -241,11 +241,11 @@
       "url": "_framework\/icudt_no_CJK.dat"
     },
     {
-      "hash": "sha256-Db7wl7HPrybVjcqPBphSFDk\/wOjd433tciSGoiVhRMI=",
+      "hash": "sha256-WegZQ9LKx7vq8z6dCiXV4ne0NCgTEhzG3O3OQhlL\/+s=",
       "url": "_framework\/blazor.boot.json"
     },
     {
-      "hash": "sha256-nSmAmWgX9eb3arFBzx39VZGviz3WaB7vmUCKX7oJiRc=",
+      "hash": "sha256-PQDzxrh2xU8hvkG9nhBvJYEzQz3yRWuUg81EWz4toVA=",
       "url": "_framework\/BipSi.wasm"
     },
     {
@@ -257,7 +257,7 @@
       "url": "_framework\/Microsoft.AspNetCore.Components.Authorization.wasm"
     },
     {
-      "hash": "sha256-pOJF4A5\/7fb4T6VuTt\/bEZ1i\/SJkMfFkg7X1MhtiG1U=",
+      "hash": "sha256-AsIGBJFwP+LeqN1j6W4KXoOhpI92Z2Q\/9+FzfYRfLlk=",
       "url": "_framework\/Microsoft.AspNetCore.Components.wasm"
     },
     {
@@ -381,7 +381,7 @@
       "url": "_framework\/System.Net.Primitives.wasm"
     },
     {
-      "hash": "sha256-UJKH5gD+ExXPRoCaRHmxO+TtkaNlbbcT5PSVJnxR1ik=",
+      "hash": "sha256-PUslYt7KPGnSxXsDyF0YGJJQh9ZjDUcdWr8dhIsM6ac=",
       "url": "_framework\/System.Private.CoreLib.wasm"
     },
     {
@@ -405,7 +405,7 @@
       "url": "_framework\/System.Runtime.Numerics.wasm"
     },
     {
-      "hash": "sha256-YlShc3MBLTaMJrSrGoBxKNAp2s6VJB4VCSS\/xPxEc2E=",
+      "hash": "sha256-DbNeIijCg0N\/s4xjjuMFM6g6viiAG49JEMlbmvje2zc=",
       "url": "_framework\/System.Runtime.wasm"
     },
     {
@@ -445,5 +445,5 @@
       "url": "_content\/Microsoft.AspNetCore.Components.WebAssembly.Authentication\/AuthenticationService.js"
     }
   ],
-  "version": "DxpQE1s+"
+  "version": "BRlYaJxq"
 };
