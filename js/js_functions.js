@@ -65,7 +65,10 @@ window.startWatchingPosition = function (dotNetObjectReference) {
         };
         dotNetObjectReference.invokeMethodAsync('OnPositionReceived', newPosition);
     }, function (error) {
-        console.error(error);
+        var newPosition = {
+            error: error.message
+        };
+        dotNetObjectReference.invokeMethodAsync('OnPositionReceived', newPosition);
     }, { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 });
 
     // Stop watching after 10 seconds
