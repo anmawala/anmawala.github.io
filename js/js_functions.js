@@ -53,33 +53,25 @@ testGeolocation = function () {
     });
 }
 
-startWatchingPosition = function (minAccuracy) {
-    return new Promise((resolve, reject) => {
-        const id = navigator.geolocation.watchPosition(function (position) {
+window.startWatchingPosition = function (dotNetObjectReference) {
+    const id = navigator.geolocation.watchPosition(function (position) {
+        const newPosition = {
+            coords: {
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude,
+                accuracy: position.coords.accuracy
+            },
+            timestamp: position.timestamp
+        };
+        dotNetObjectReference.invokeMethodAsync('OnPositionReceived', newPosition);
+    }, function (error) {
+        console.error(error);
+    }, { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 });
 
-            newPosition = {
-                coords: {
-                    latitude: position.coords.latitude,
-                    longitude: position.coords.longitude,
-                    accuracy: position.coords.accuracy
-                },
-                timestamp: position.timestamp
-            }
-
-            if (position.coords.accuracy <= minAccuracy) {
-                resolve(newPosition);
-                navigator.geolocation.clearWatch(id);
-            }
-        }, function (error) {
-            reject(error.code);
-        }, { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 });
-
-        // Reject the promise after 10 seconds
-        setTimeout(() => {
-            navigator.geolocation.clearWatch(id);
-            reject('Overall timeout exceeded');
-        }, 10000);
-    });
+    // Stop watching after 10 seconds
+    setTimeout(() => {
+        navigator.geolocation.clearWatch(id);
+    }, 10000);
 }
 
 // Local Storage
@@ -169,7 +161,7 @@ function onupgradeneeded(event) {
             objectStore.createIndex("roleName", "roleName", { unique: false });
             objectStore.createIndex("enablementStartTime", "oraInizioPrestazione", { unique: false });
             objectStore.createIndex("enablementEndTime", "enablementEndTime", { unique: false });
-            objectStore.createIndex("notime", "notime", { unique: false })
+            objectStore.createIndex("enablementNoTime", "notime", { unique: false })
             objectStore.createIndex("lastEdit", "lastEdit", { unique: false });
         };
 
@@ -273,7 +265,7 @@ clockingSave = function ($type, $p) {
                     roleName: $p.roleName,
                     enablementStartTime: $p.enablementStartTime,
                     enablementEndTime: $p.enablementEndTime,
-                    notime: $p.notime,
+                    enablementNoTime: $p.enablementNoTime,
                     lastEdit: Date.now()
                 };
     
