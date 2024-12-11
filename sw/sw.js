@@ -1,6 +1,6 @@
 const CACHE_NAME = 'my-pwa-cache-v1';
 const urlsToCache = [
-    '/sw/index.html',
+    '/sw/',
     '/sw/icons/icon-192x192.png',
     '/sw/icons/icon-512x512.png',
 ];
@@ -25,6 +25,7 @@ self.addEventListener('fetch', event => {
         caches.match(event.request)
             .then(response => {
                 if (response) {
+                    console.log('Found in cache:', event.request.url);
                     return response;
                 }
                 return fetch(event.request);
