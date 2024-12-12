@@ -1,46 +1,40 @@
-const CACHE_NAME = 'my-pwa-cache-v1';
-const urlsToCache = [
-    '/sw/',
-    '/sw/icons/icon-192x192.png',
-    '/sw/icons/icon-512x512.png',
+const CACHE_NAME = 'v1.0.2';
+const resources = [
+    "/sw/",
+    "/sw/index.html",
+    "/sw/style.css",
+    //"/sw/script.js",
+    "/sw/icons/icon-192x192.png",
+    "/sw/icons/icon-512x512.png",
+    "/sw/version.json",
 ];
 
-// Install event
-self.addEventListener('install', event => {
-    event.waitUntil(
-        caches.open(CACHE_NAME)
-            .then(cache => {
-                return cache.addAll(urlsToCache);
-            })
-            .catch(error => {
-                console.error('Failed to cache:', error);
-            })
-    );
+async function addResourcesToCache(resources) {
+    const cache = await caches.open(CACHE_NAME);
+    await cache.addAll(resources);
+}
+
+self.addEventListener("install", (event) => {
+    event.waitUntil(addResourcesToCache(resources));
 });
 
-// Fetch event
-self.addEventListener('fetch', event => {
-    console.log('Fetch event for:', event.request.url);
+self.addEventListener("fetch", (event) => {
     event.respondWith(
-        caches.match(event.request)
-            .then(response => {
-                if (response) {
-                    console.log('Found in cache:', event.request.url);
-                    return response;
-                }
-                return fetch(event.request);
-            })
+        caches.match(event.request).then((response) => {
+            return response || fetch(event.request).catch(() => {
+                // Handle fetch errors
+                return caches.match("/sw/index.html");
+            });
+        })
     );
 });
 
-// Activate event
-self.addEventListener('activate', event => {
-    const cacheWhitelist = [CACHE_NAME];
+self.addEventListener("activate", (event) => {
     event.waitUntil(
-        caches.keys().then(cacheNames => {
+        caches.keys().then((cacheNames) => {
             return Promise.all(
-                cacheNames.map(cacheName => {
-                    if (cacheWhitelist.indexOf(cacheName) === -1) {
+                cacheNames.map((cacheName) => {
+                    if (cacheName !== CACHE_NAME) {
                         return caches.delete(cacheName);
                     }
                 })
@@ -49,4 +43,10 @@ self.addEventListener('activate', event => {
     );
 });
 
-// Versione 2
+// Listen for skip waiting message
+self.addEventListener("message", (event) => {
+    if (event.data.type === "SKIP_WAITING") {
+        self.skipWaiting();
+    }
+});
+//1234
