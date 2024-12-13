@@ -49,4 +49,7 @@ self.addEventListener("message", (event) => {
         self.skipWaiting();
     }
 });
-//1234
+
+self.onpush = (event) => {
+    console.log(event);
+};
